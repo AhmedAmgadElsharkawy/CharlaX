@@ -14,3 +14,5 @@ const genearteToken = (userid, res) => {
 
     return token;
 }
+
+export {genearteToken}
