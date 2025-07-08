@@ -11,7 +11,7 @@ import HomePage from "./pages/HomePage"
 import SettingsPage from "./pages/SettingsPage"
 
 import { useEffect } from 'react'
-import { useAuthStore } from './store/userAuthStore'
+import { useAuthStore } from './store/useAuthStore'
 
 import { Loader } from 'lucide-react';
 
