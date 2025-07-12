@@ -1,6 +1,4 @@
-  <img src="https://raw.githubusercontent.com/AhmedAmgadElsharkawy/CharlaX/main/frontend/public/favicon.svg" alt="CharlaX Logo" width="40" style="vertical-align: middle; margin-right: 10px;">
-  <strong style="font-size: 28px;">CharlaX</strong>
-</p>
+# CharlaX
 CharlaX is a modern, real-time chat application built using the **MERN stack**, combining powerful technologies like **Tailwind CSS**, **DaisyUI**, **Zustand**, and **Socket.IO** to deliver a seamless messaging experience. It supports **instant text messaging** and **image sharing**, making it ideal for both casual and professional communication.
 
 ## Table of Contents
