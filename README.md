@@ -7,16 +7,14 @@ CharlaX is a modern, real-time chat application built using the **MERN stack**, 
 - [Installation](#installation)
 - [Technology Stack](#technology-stack)
 - [Features](#features)
-- [Contributors](#contributors)
 
 ## Demo
 https://github.com/user-attachments/assets/73d24e35-d004-4485-aab6-3b6409ab33b4
 
 ## Prerequisites
 
-- **Node.js** (v16 or later)
-- **MongoDB** (local or cloud)
-- (Optional) Vite globally installed for the frontend
+- **Node.js**
+- **MongoDB** 
 
 
 ## Installation
@@ -69,6 +67,10 @@ https://github.com/user-attachments/assets/73d24e35-d004-4485-aab6-3b6409ab33b4
      cd frontend
      npm run dev
      ```
+
+   - **Access the app:**
+
+     Open your browser and go to [http://localhost:5173](http://localhost:5173)
 
 ## Technology Stack
 
