@@ -8,7 +8,7 @@ const messageSchema = mongoose.Schema({
         required: true
     },
 
-    recieverId: {
+    receiverId : {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
         required: true
