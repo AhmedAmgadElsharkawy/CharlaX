@@ -1,0 +1,20 @@
+{
+  "name": "charlax",
+  "version": "1.0.0",
+  "description": "CharlaX is a real-time messaging app built for seamless, expressive conversations — fast, intuitive, and powered by modern web technologies.",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedAmgadElsharkawy/CharlaX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedAmgadElsharkawy/CharlaX/issues"
+  },
+  "homepage": "https://github.com/AhmedAmgadElsharkawy/CharlaX#readme"
+}
