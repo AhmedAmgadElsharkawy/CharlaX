@@ -1,5 +1,5 @@
 import express from "express"
-import {signup, login, logout, updateProfile, checkAuth} from "../controllers/auth.controller.js"
+import {signup, login, logout, updateProfile, checkAuth, refreshTheAccessToken} from "../controllers/auth.controller.js"
 import {protectRoute} from "../middleware/auth.middleware.js"
 
 const router = express.Router()
@@ -11,5 +11,7 @@ router.post("/logout",logout)
 router.patch("/update-profile", protectRoute, updateProfile)
 
 router.get("/check", protectRoute, checkAuth)
+
+router.get("/refresh",refreshTheAccessToken)
 
 export default router;

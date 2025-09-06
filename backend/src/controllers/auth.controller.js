@@ -1,7 +1,8 @@
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
-import { generateToken } from "../lib/utils.js"
+import { generateAccessToken, generateRefreshToken } from "../lib/utils.js"
 import cloudinary from "../lib/cloudinary.js"
+import jwt from "jsonwebtoken"
 
 export const signup = async (req, res) => {
     const { email, fullName, password } = req.body
@@ -23,7 +24,8 @@ export const signup = async (req, res) => {
         })
 
         if (newUser) {
-            generateToken(newUser._id, res);
+            generateAccessToken(newUser._id, res);
+            generateRefreshToken(newUser._id, res);
             await newUser.save();
             res.status(201).json(
                 {
@@ -51,7 +53,8 @@ export const login = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user.password)
         if (!isPasswordCorrect)
             return res.status(400).json({ message: "Invalid Credentials!" });
-        generateToken(user._id, res);
+        generateAccessToken(user._id, res);
+        generateRefreshToken(user._id, res);
         res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
@@ -66,7 +69,8 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
     try {
-        res.cookie("jwt", "", { maxAge: 0 })
+        res.cookie("accessToken", "", { maxAge: 0 })
+        res.cookie("refreshToken", "", { maxAge: 0 })
         res.status(200).json({ message: "Logged out successfully!" })
     } catch (error) {
         console.log("Error in logout controller", error.message)
@@ -103,3 +107,28 @@ export const checkAuth = (req, res) => {
         res.status(500).json({ message: "Internal server error" })
     }
 }
+
+
+export const refreshTheAccessToken = (req, res) => {
+    try {
+        const refreshToken = req.cookies.refreshToken;
+        if (!refreshToken) {
+            return res.status(401).json({ message: "Unauthorized - No Refresh Token Provided" });
+        }
+
+        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN_SECRET);
+
+        generateAccessToken(decoded.userId, res);
+
+        return res.status(200).json({ message: "Access token refreshed successfully" });
+    } catch (error) {
+        if (error.name === "TokenExpiredError") {
+            return res.status(401).json({ message: "Unauthorized - Refresh Token Expired" });
+        } else if (error.name === "JsonWebTokenError") {
+            return res.status(403).json({ message: "Unauthorized - Invalid Refresh Token" });
+        }
+
+        console.error("Error in refreshTheAccessToken:", error.message);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+};
