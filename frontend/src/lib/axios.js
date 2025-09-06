@@ -19,7 +19,7 @@ const baseConfig = {
 
 const axiosInstance = axios.create(baseConfig);
 
-// refreshAxios has the same config but no interceptors
+// refreshAxios has the same config but no interceptors to not cause infinite requests when the refresh route returns 401
 const refreshAxios = axios.create(baseConfig);
 
 
